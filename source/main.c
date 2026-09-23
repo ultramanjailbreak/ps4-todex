@@ -4,8 +4,6 @@
 
 #include "ps4.h"
 
-#define SPOOF 0x82
-
 int _main(struct thread *td) {
   UNUSED(td);
 
@@ -17,12 +15,11 @@ int _main(struct thread *td) {
   DEBUG_SOCK = SckConnect(DEBUG_IP, DEBUG_PORT);
 #endif
 
-  jailbreak();
-  spoof_target_id(SPOOF);
-
+  // Initialize UI utilities required for notifications
   initSysUtil();
 
-  printf_notification("Spoofing Target ID: 0x%hhx!", SPOOF);
+  // Send the single requested notification string
+  printf_notification("Loading Hen 3.1");
 
 #ifdef DEBUG_SOCKET
   printf_debug("Closing socket...\n");
